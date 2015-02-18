@@ -34,6 +34,44 @@ void * servRecv(void *args){
 				escribir(sockfd, aux2);
 				
 			}
+			int send = 1;
+			char msg[1024] = "\0";
+			if(strcmp(command,"PRIVMSG")==0){
+		    	trash = strtok (NULL," ");
+				trash = strtok (NULL,":");
+				char* ultra_trash = malloc(sizeof(trash));
+				strcpy(ultra_trash, trash);
+				trash = strtok(NULL, ":");
+				if (trash != NULL){
+					sprintf(msg, "%s:%s", ultra_trash, trash);
+				} else{
+					//poner aqui un if que si lee JOIN en ultra_trash ponga send a 1
+					send = 0;
+				}
+				fprintf(stderr, "trash=%s\n",trash);
+				fprintf(stderr, "ultra_trash = %s\n", ultra_trash);
+				fflush(stderr);
+				if(strstr(msg,"SEND") != NULL){
+					send=1;
+					printf("SEND\n");
+				} else if(strstr(msg,"NSEND") != 0){
+					send=0;
+					printf("NSEND\n");
+				}
+				/*if(msg!=NULL){
+				printf("msg=%s\n",msg);
+				strcpy(msg,trash);
+				sprintf(aux2,"%s:%s",aux2,msg);
+				}*/
+				printf("send %d\n",send);
+				if(send ==1){
+					char* p = msg;
+					p += strlen("SEND ");
+					printf ("se envia=%s",p);
+					escribir(sockfd, p);
+
+				}
+	    	}
 		}
 	}
 	printf("Terminada la conexion\n");
