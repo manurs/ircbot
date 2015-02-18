@@ -10,6 +10,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <pthread.h>
+
+void connect_client(void);
 int abrirSocketTCP();
 int abrirSocketUDP();
 int abrirBind(int sockfd,const struct sockaddr_in *addr);

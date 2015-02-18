@@ -5,12 +5,12 @@
 
 void * servRecv(void *args){
 	char buf[512], aux2[512];
-	char *command, *usr, *ch,*trash;
+	char *command, *usr, /* *ch,*/*trash;
 	int aux; 
 	while(1){
 		command=NULL;
 		usr=NULL;
-		ch=NULL;
+		//ch=NULL;
 		trash=NULL;
 		if(0<(aux=recibir(sockfd, buf))){
 			printf("%drecibido:%s\n\n\t",aux,buf);
@@ -29,7 +29,7 @@ void * servRecv(void *args){
 			printf(" %s\n",command);
 			if(strcmp(command,"JOIN")==0){
 				printf("%s\n",usr);
-				sprintf(aux2,"MODE #cosas +o %s%c%c\0",usr,0x0d,0x0a);
+				sprintf(aux2,"MODE #cosas +o %s%c%c",usr,0x0d,0x0a);
 				printf(" %s",aux2);
 				escribir(sockfd, aux2);
 				
@@ -41,9 +41,9 @@ void * servRecv(void *args){
 void connect_client(void)
 {
 	struct addrinfo hints, *res;
-	int nick, user;
+	int nick;// user;
 	pthread_t h1,h2;
-	char port[20];
+	//char port[20];
 	char command[256];
 	printf("Conectando a %s:%s\n","metis.ii.uam.es","6667"  );
 	memset(&hints, 0, sizeof hints);

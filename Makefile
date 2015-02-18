@@ -17,7 +17,7 @@
         SRCDIR = bot
         SOURCES = $(SRCDIR)/funciones.c $(SRCDIR)/main.c
         OBJS = $(SOURCES:.c=.o)
-        INCLUDES = 
+        INCLUDES = $(SRCDIR)/funciones.h 
         TARFLAG = -cvzf
         TARNAME = bot.tgz
          
