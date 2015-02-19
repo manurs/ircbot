@@ -3,7 +3,7 @@
 /*anadido return -1*/
 
 char * posiciona(char crt, char *str){
-	int i=0;
+	unsigned int i=0;
 	if(str==NULL)
 		return NULL;
 	for(i=0;i<strlen(str);i++){
@@ -17,7 +17,6 @@ void * servRecv(void *args){
 	char *command, *usr, /* *ch,*/*trash;
 	int aux;
 	int send = 1;
-	char msg[1024] = "\0";
 	char* ultra_trash;
 	while(1){
 		command=NULL;
@@ -29,7 +28,7 @@ void * servRecv(void *args){
 			usr = strtok (buf,"!");
 			if(usr==NULL)
 				continue;
-			strcpy(usr,&usr[1]);
+			//strcpy(usr,&usr[1]);
 			printf("usr=%s\n",usr);
 			trash = strtok (NULL," ");
 			if(trash==NULL)
@@ -49,22 +48,21 @@ void * servRecv(void *args){
 			if(strcmp(command,"PRIVMSG")==0){
 				trash = strtok (NULL," ");
 				printf("trash=%s\n",trash);
+
 				trash = strtok (NULL,"");
 				printf("trash=%s\n",trash);
+				
 				ultra_trash = malloc(sizeof(char)*strlen(trash));
+				
 				strcpy(ultra_trash, &trash[1]);
 				printf("%lu\n",sizeof(trash));
+				
 				trash = strtok(NULL, ":");
-				/*if (trash != NULL){
-					sprintf(msg, "%s:%s", ultra_trash, trash);
-					printf("\t\tmsg==%s\n",msg);
-				} else{
-					//poner aqui un if que si lee JOIN en ultra_trash ponga send a 1
-					//send = 0;
-				}*/
+				
 				fprintf(stderr, "trash=%s\n",trash);
 				fprintf(stderr, "ultra_trash = %s\n", ultra_trash);
 				fflush(stderr);
+				
 				if(strncmp(ultra_trash,"SEND",strlen("SEND"))==0){
 					send=1;
 					printf("SEND\n");
@@ -78,27 +76,8 @@ void * servRecv(void *args){
 					escribir(sockfd, ultra_trash);
 
 				}
-				/*if(strstr(msg,"SEND") != NULL){
-					send=1;
-					printf("SEND\n");
-				} else if(strstr(msg,"NSEND") != 0){
-					send=0;
-					printf("NSEND\n");	
-				}*/
-				/*if(msg!=NULL){
-				printf("msg=%s\n",msg);
-				strcpy(msg,trash);
-				sprintf(aux2,"%s:%s",aux2,msg);
-				}*/
-				/*
-				printf("send %d\n",send);
-				
-				printf("trash ==%s\n",trash);
-				if(send ==1){
-					escribir(sockfd, msg);
-
-				}*/
-	    		}
+				free(ultra_trash);
+	    	}
 		}
 	}
 	printf("Terminada la conexion\n");
@@ -137,6 +116,7 @@ void connect_client(void)
 	printf("los caracteres son estos:%c %c",0X0d,0X0a);
 	pthread_create(&h1,NULL, servRecv, (void *)NULL );
 	//IRC_Nick(command, NULL, "raspberry");
+	
 	sprintf(command, "NICK raspberry%c%cUSER raspberry raspberry metis.ii.uam.es :raspberry%c%c",0X0d,0X0d,0X0d,0X0d);
 	nick=escribir(sockfd,command);
 	printf("%s, %d\n",command,nick );
@@ -151,7 +131,11 @@ void connect_client(void)
 	//user=escribir(sockfd,command);
 	//printf("%s, %d\n",command,user );
 	pthread_create(&h2,NULL, Ping, (void *)NULL );
-	
+	//pthread_cancel(h1);
+	//pthread_join(h1, NULL);
+	pthread_cancel(h2);
+	pthread_join(h2, NULL);
+	free(res);
 }
  void * Ping(void *args){
  	while(1){

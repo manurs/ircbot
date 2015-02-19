@@ -9,7 +9,7 @@
         CC = gcc
 
 # # Compiling options
-        CFLAGS = -Wall -Wextra -std=gnu99 -pedantic -g -O3 #-Wno-unused-parameter #-Wno-unused-result
+        CFLAGS = -Wall -Wextra -std=gnu99 -pedantic -g -O3 -Wno-unused-parameter #-Wno-unused-result
         LIBS = -lpthread
 
 # # Source code folder
