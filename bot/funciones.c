@@ -20,7 +20,7 @@ int check_usr(char * usr){
 	while(getline(&buff, &size, pFile) != -1){
 		printf("buffer leido:[%s]usr:[%s]\n", buff, usr);
 		fflush(stdout);
-		if(strcmp(usr, buff) == 0){
+		if(strncmp(usr, buff,strlen(usr)) == 0){
 			free(buff);
 			fclose(pFile);
 			return 1;
@@ -88,6 +88,7 @@ void * servRecv(void *args){
 				fflush(stderr);
 
 				printf("ch=%s\n",ch);
+				printf("usr==%s\n", usr);
 				if((check_usr(&usr[1]) != 0) && iscommand(ultra_trash) != 0){
 					if(strncmp(ultra_trash,"SEND",strlen("SEND"))==0){
 						send=1;
