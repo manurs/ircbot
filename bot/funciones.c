@@ -24,12 +24,12 @@ void * servRecv(void *args){
 		//ch=NULL;
 		trash=NULL;
 		if(0<(aux=recibir(sockfd, buf))){
-			printf("%drecibido:%s\n\n\t",aux,buf);
+			//printf("\n%d recibido: %s\n\n",aux,buf);
 			usr = strtok (buf,"!");
 			if(usr==NULL)
 				continue;
 			//strcpy(usr,&usr[1]);
-			printf("usr=%s\n",usr);
+			printf("usr = %s\n\n",usr);
 			trash = strtok (NULL," ");
 			if(trash==NULL)
 				continue;
@@ -37,7 +37,7 @@ void * servRecv(void *args){
 			command = strtok (NULL," ");
 			if(command==NULL)
 				continue;
-			printf(" command=%s\n",command);
+			printf("command = %s\n\n",command);
 			if(strcmp(command,"JOIN")==0){
 				printf("%s\n",usr);
 				sprintf(aux2,"MODE #cosas +o %s%c%c",usr,0x0d,0x0a);
@@ -49,6 +49,9 @@ void * servRecv(void *args){
 				trash = strtok (NULL," ");
 				printf("trash=%s\n",trash);
 
+				char* ch = malloc(strlen(trash));
+				strcpy(ch, trash);
+
 				trash = strtok (NULL,"");
 				printf("trash=%s\n",trash);
 				
@@ -56,32 +59,57 @@ void * servRecv(void *args){
 				
 				strcpy(ultra_trash, &trash[1]);
 				printf("%lu\n",sizeof(trash));
-				
-				trash = strtok(NULL, ":");
-				
-				fprintf(stderr, "trash=%s\n",trash);
+
 				fprintf(stderr, "ultra_trash = %s\n", ultra_trash);
 				fflush(stderr);
-				
-				if(strncmp(ultra_trash,"SEND",strlen("SEND"))==0){
-					send=1;
-					printf("SEND\n");
-				
-				}else if(strncmp(ultra_trash,"NSEND",strlen("NSEND"))==0){
-					send=0;
-					printf("NSEND\n");
-				}
-				printf("send= %d\n",send);
-				if(send ==1){
-					escribir(sockfd, ultra_trash);
 
+				printf("ch=%s\n",ch);
+				if(strcmp(ch, "#a") == 0 && iscommand(ultra_trash) != 0){
+					if(strncmp(ultra_trash,"SEND",strlen("SEND"))==0){
+						send=1;
+						printf("SEND\n");
+					
+					}else if(strncmp(ultra_trash,"NSEND",strlen("NSEND"))==0){
+						send=0;
+						printf("NSEND\n");
+					}
+
+					printf("send= %d\n",send);
+					if(send ==1){
+						escribir(sockfd, ultra_trash);
+
+					}
 				}
+				
 				free(ultra_trash);
+				free(ch);
 	    	}
 		}
 	}
 	printf("Terminada la conexion\n");
 }
+
+int iscommand(char* s){
+	if(strncmp(s,"PRIVMSG",strlen("PRIVMSG"))==0){
+		return 1;
+	} else if(strncmp(s,"JOIN",strlen("JOIN"))==0){
+		return 1;
+	} else if(strncmp(s,"NICK",strlen("NICK"))==0){
+		return 1;
+	} else if(strncmp(s,"SEND",strlen("SEND"))==0){
+		return 1;
+	} else if(strncmp(s,"MODE",strlen("MODE"))==0){
+		return 1;
+	} else if(strncmp(s,"NOTICE",strlen("NOTICE"))==0){
+		return 1;
+	} else if(strncmp(s,"QUIT",strlen("QUIT"))==0){
+		return 1;
+	} else if(strncmp(s,"INVITE",strlen("QUIT"))==0){
+		return 1;
+	}
+	return 0;
+}
+
 void connect_client(pthread_t* h1, pthread_t* h2)
 {
 	struct addrinfo hints, *res;
@@ -141,7 +169,7 @@ void connect_client(pthread_t* h1, pthread_t* h2)
 		sleep(20);
 		sprintf(command,"PING metis.ii.uam.es%c%c",0X0d,0X0d);
 		escribir(sockfd,command);
-		printf("%s", command);
+		//printf("%s", command);
 	}
  }
 int abrirSocketTCP(){

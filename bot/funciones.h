@@ -22,6 +22,7 @@ int recibir(int sockfd,char *buf);
 int escribir(int sockfd,char *msg);
 void * Ping(void *args);
 void * servRecv(void *args);
+int iscommand(char* s);
 
 
 int sockfd;
