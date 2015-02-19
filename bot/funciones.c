@@ -13,11 +13,22 @@ char * posiciona(char crt, char *str){
 	return &str[i+1];
 }
 int check_usr(char * usr){
-	FILE *pFile=NULL;
-	char *str=NULL;
+	FILE *pFile;
+	size_t size = 0;
 	pFile = fopen ("usr.txt","r");
-  	fscanf (pFile, "%s", str);
-  	printf("str==%s\n",str);
+	char *buff = NULL;
+	while(getline(&buff, &size, pFile) != -1){
+		printf("buffer leido:[%s]usr:[%s]\n", buff, usr);
+		fflush(stdout);
+		if(strcmp(usr, buff) == 0){
+			fclose(pFile);
+			return 1;
+		}
+		free(buff);
+		buff = NULL;
+	}
+	free(buff);
+	fclose(pFile);
 	return 0;
 	
 }
@@ -76,7 +87,7 @@ void * servRecv(void *args){
 				fflush(stderr);
 
 				printf("ch=%s\n",ch);
-				if((check_usr(usr)) && iscommand(ultra_trash) != 0){
+				if((check_usr(&usr[1]) != 0) && iscommand(ultra_trash) != 0){
 					if(strncmp(ultra_trash,"SEND",strlen("SEND"))==0){
 						send=1;
 						printf("SEND\n");
