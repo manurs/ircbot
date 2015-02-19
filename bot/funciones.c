@@ -21,6 +21,7 @@ int check_usr(char * usr){
 		printf("buffer leido:[%s]usr:[%s]\n", buff, usr);
 		fflush(stdout);
 		if(strcmp(usr, buff) == 0){
+			free(buff);
 			fclose(pFile);
 			return 1;
 		}
