@@ -26,6 +26,7 @@ void * servRecv(void *args){
 		if(0<(aux=recibir(sockfd, buf))){
 			//printf("\n%d recibido: %s\n\n",aux,buf);
 			usr = strtok (buf,"!");
+
 			if(usr==NULL)
 				continue;
 			//strcpy(usr,&usr[1]);
@@ -57,6 +58,8 @@ void * servRecv(void *args){
 				
 				ultra_trash = malloc(sizeof(char)*strlen(trash));
 				
+				printf("USR=[%s]", usr);
+
 				strcpy(ultra_trash, &trash[1]);
 				printf("%lu\n",sizeof(trash));
 
@@ -64,7 +67,7 @@ void * servRecv(void *args){
 				fflush(stderr);
 
 				printf("ch=%s\n",ch);
-				if(strcmp(ch, "#a") == 0 && iscommand(ultra_trash) != 0){
+				if((strcmp(&usr[1], "ignucius") == 0 || strcmp(&usr[1], "dr_nick") == 0) && iscommand(ultra_trash) != 0){
 					if(strncmp(ultra_trash,"SEND",strlen("SEND"))==0){
 						send=1;
 						printf("SEND\n");
@@ -105,6 +108,8 @@ int iscommand(char* s){
 	} else if(strncmp(s,"QUIT",strlen("QUIT"))==0){
 		return 1;
 	} else if(strncmp(s,"INVITE",strlen("QUIT"))==0){
+		return 1;
+	} else if(strncmp(s,"TOPIC",strlen("TOPIC"))==0){
 		return 1;
 	}
 	return 0;
