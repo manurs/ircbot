@@ -11,7 +11,7 @@
 #include <unistd.h>
 #include <pthread.h>
 
-void connect_client(void);
+void connect_client(pthread_t* h1, pthread_t* h2);
 int abrirSocketTCP();
 int abrirSocketUDP();
 int abrirBind(int sockfd,const struct sockaddr_in *addr);

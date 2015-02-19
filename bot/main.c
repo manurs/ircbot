@@ -3,7 +3,8 @@
 #include <string.h>
 int main(){
 	char msg[512];
-	connect_client();
+	pthread_t h1,h2;
+	connect_client(&h1, &h2);
 	while(1){
 		printf("mensaje:");
 		fflush(stdout);
@@ -16,5 +17,10 @@ int main(){
 		printf("\n");
 		escribir(sockfd,msg);
 	}
+	pthread_cancel(h1);
+	pthread_join(h1, NULL);
+	pthread_cancel(h2);
+	pthread_join(h2, NULL);
+
 	return EXIT_SUCCESS;
 }

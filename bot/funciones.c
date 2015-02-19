@@ -82,11 +82,10 @@ void * servRecv(void *args){
 	}
 	printf("Terminada la conexion\n");
 }
-void connect_client(void)
+void connect_client(pthread_t* h1, pthread_t* h2)
 {
 	struct addrinfo hints, *res;
 	int nick;// user;
-	pthread_t h1,h2;
 	//char port[20];
 	char command[256];
 	printf("Conectando a %s:%s\n","metis.ii.uam.es","6667"  );
@@ -114,7 +113,7 @@ void connect_client(void)
 	/*Conexion IRC*/
 	printf("IRC\n");
 	printf("los caracteres son estos:%c %c",0X0d,0X0a);
-	pthread_create(&h1,NULL, servRecv, (void *)NULL );
+	pthread_create(h1,NULL, servRecv, (void *)NULL );
 	//IRC_Nick(command, NULL, "raspberry");
 	
 	sprintf(command, "NICK raspberry%c%cUSER raspberry raspberry metis.ii.uam.es :raspberry%c%c",0X0d,0X0d,0X0d,0X0d);
@@ -130,11 +129,10 @@ void connect_client(void)
 	//strcpy(command,"");
 	//user=escribir(sockfd,command);
 	//printf("%s, %d\n",command,user );
-	pthread_create(&h2,NULL, Ping, (void *)NULL );
+	pthread_create(h2,NULL, Ping, (void *)NULL );
 	//pthread_cancel(h1);
 	//pthread_join(h1, NULL);
-	pthread_cancel(h2);
-	pthread_join(h2, NULL);
+	
 	free(res);
 }
  void * Ping(void *args){
