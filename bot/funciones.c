@@ -12,6 +12,15 @@ char * posiciona(char crt, char *str){
 	}
 	return &str[i+1];
 }
+int check_usr(char * usr){
+	FILE *pFile=NULL;
+	char *str=NULL;
+	pFile = fopen ("usr.txt","r");
+  	fscanf (pFile, "%s", str);
+  	printf("str==%s\n",str);
+	return 0;
+	
+}
 void * servRecv(void *args){
 	char buf[512], aux2[512];
 	char *command, *usr, /* *ch,*/*trash;
@@ -67,7 +76,7 @@ void * servRecv(void *args){
 				fflush(stderr);
 
 				printf("ch=%s\n",ch);
-				if((strcmp(&usr[1], "ignucius") == 0 || strcmp(&usr[1], "dr_nick") == 0) && iscommand(ultra_trash) != 0){
+				if((check_usr(usr)) && iscommand(ultra_trash) != 0){
 					if(strncmp(ultra_trash,"SEND",strlen("SEND"))==0){
 						send=1;
 						printf("SEND\n");
