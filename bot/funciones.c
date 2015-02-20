@@ -18,9 +18,11 @@ int check_usr(char * usr){
 	pFile = fopen ("usr.txt","r");
 	char *buff = NULL;
 	while(getline(&buff, &size, pFile) != -1){
+		char*p;
+		if((p = strchr(buff, '\n')) != NULL) *p = '\0';
 		printf("buffer leido:[%s]usr:[%s]\n", buff, usr);
 		fflush(stdout);
-		if(strncmp(usr, buff,strlen(usr)) == 0){
+		if(strcmp(usr, buff) == 0){
 			free(buff);
 			fclose(pFile);
 			return 1;
