@@ -131,9 +131,11 @@ int iscommand(char* s){
 		return 1;
 	} else if(strncmp(s,"QUIT",strlen("QUIT"))==0){
 		return 1;
-	} else if(strncmp(s,"INVITE",strlen("QUIT"))==0){
+	} else if(strncmp(s,"INVITE",strlen("INVITE"))==0){
 		return 1;
 	} else if(strncmp(s,"TOPIC",strlen("TOPIC"))==0){
+		return 1;
+	} else if(strncmp(s,"PART",strlen("PART"))==0){
 		return 1;
 	}
 	return 0;
