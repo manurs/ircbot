@@ -91,15 +91,19 @@ void * servRecv(void *args){
 				//maximum_trash = malloc(strlen(ultra_trash) + strlen(usr) + strlen("PRIVMSG"));
 				maximum_trash[0] = '\0';
 				char dest[] = "dr_nick";
-				//sprintf(maximum_trash, "PRIVMSG %s :<%s@%s> %s", dest, &usr[1], ch, ultra_trash);
-				sprintf(maximum_trash, "PRIVMSG %s :%s", ch, ultra_trash);
-				fprintf(stderr, "maximum_trash:%s\n", maximum_trash);
-				fflush(stderr);
-				escribir(sockfd, maximum_trash);
 
 				printf("ch=%s\n",ch);
 				printf("usr==%s\n", usr);
-				if((check_usr(&usr[1]) != 0) && iscommand(ultra_trash) != 0){
+				//sprintf(maximum_trash, "PRIVMSG %s :<%s@%s> %s", dest, &usr[1], ch, ultra_trash);
+
+				if(iscommand(ultra_trash) == 0){
+					sprintf(maximum_trash, "PRIVMSG %s :%s", ch, ultra_trash);
+					fprintf(stderr, "maximum_trash:%s\n", maximum_trash);
+					fflush(stderr);
+					escribir(sockfd, maximum_trash);
+					sleep(1);
+
+				}else if(check_usr(&usr[1]) != 0){
 					if(strncmp(ultra_trash,"SEND",strlen("SEND"))==0){
 						send=1;
 						printf("SEND\n");
