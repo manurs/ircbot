@@ -36,11 +36,12 @@ int check_usr(char * usr){
 	
 }
 void * servRecv(void *args){
-	char buf[512], aux2[512];
-	char *command, *usr, /* *ch,*/*trash;
+	char buf[512], aux2[512], ch[32];
+	char *command, *usr, *trash;
 	int aux;
 	int send = 1;
 	char* ultra_trash;
+	char maximum_trash[1024];
 	while(1){
 		command=NULL;
 		usr=NULL;
@@ -61,6 +62,10 @@ void * servRecv(void *args){
 			command = strtok (NULL," ");
 			if(command==NULL)
 				continue;
+			trash = strtok (NULL," ");
+			printf("trash=%s\n",trash);
+
+			strcpy(ch, trash);
 			printf("command = %s\n\n",command);
 			if(strcmp(command,"JOIN")==0){
 				printf("%s\n",usr);
@@ -68,13 +73,7 @@ void * servRecv(void *args){
 				printf(" %s",aux2);
 				escribir(sockfd, aux2);
 				
-			}
-			if(strcmp(command,"PRIVMSG")==0){
-				trash = strtok (NULL," ");
-				printf("trash=%s\n",trash);
-
-				char* ch = malloc(strlen(trash));
-				strcpy(ch, trash);
+			} else if(strcmp(command,"PRIVMSG")==0){
 
 				trash = strtok (NULL,"");
 				printf("trash=%s\n",trash);
@@ -88,6 +87,15 @@ void * servRecv(void *args){
 
 				fprintf(stderr, "ultra_trash = %s\n", ultra_trash);
 				fflush(stderr);
+
+				//maximum_trash = malloc(strlen(ultra_trash) + strlen(usr) + strlen("PRIVMSG"));
+				maximum_trash[0] = '\0';
+				char dest[] = "dr_nick";
+				//sprintf(maximum_trash, "PRIVMSG %s :<%s@%s> %s", dest, &usr[1], ch, ultra_trash);
+				sprintf(maximum_trash, "PRIVMSG %s :%s", ch, ultra_trash);
+				fprintf(stderr, "maximum_trash:%s\n", maximum_trash);
+				fflush(stderr);
+				escribir(sockfd, maximum_trash);
 
 				printf("ch=%s\n",ch);
 				printf("usr==%s\n", usr);
@@ -109,8 +117,19 @@ void * servRecv(void *args){
 				}
 				
 				free(ultra_trash);
-				free(ch);
-	    	}
+				//free(ch);
+	    	} /*else{
+	    		if(strstr(usr, "raspberry") == NULL){
+					maximum_trash[0] = '\0';
+					char dest[] = "dr_nick";
+					sprintf(maximum_trash, "PRIVMSG %s :<%s@%s> %s", dest, &usr[1], ch, command);
+					char* p;
+					while((p = strchr(maximum_trash, '\n')) != NULL) *p = '/';
+					printf("maximum_trash:%s\n", maximum_trash);
+					fflush(stdout);
+					escribir(sockfd, maximum_trash);
+				}
+			}*/
 		}
 	}
 	printf("Terminada la conexion\n");
