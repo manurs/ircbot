@@ -2,18 +2,44 @@
 
 WINDOW *create_newwin(int height, int width, int starty, int startx);
 
+void* getarrows(void* args){
+	int k;
+	char c;
+	while(1){
+		k = wgetch(input_win);
+		switch(k){
+			case KEY_UP:
+				break;
+			case KEY_DOWN:
+				break;
+			case KEY_RIGHT:
+				break;
+			case KEY_LEFT:
+				break;
+			case KEY_ENTER:
+				c = '\n';
+				write(0, &c, 1);
+				break;
+			default:
+				c = (char) k;
+				write(0, &c, 1);
+				break;
+		}
+	}
+	pthread_exit(NULL);
+}
 
 int main(int argc, char *argv[]){
 	int startx, starty, width, height;
-	int ch;
+	//int ch;
 	char msg[512];
-	pthread_t h1,h2;
+	pthread_t /*h,*/ h1, h2;
 
 	initscr();			/* Start curses mode 		*/
-	/*cbreak();			/* Line buffering disabled, Pass on
-					 * everty thing to me 		*/
-	//noecho();
+	cbreak();			
+	echo();
 	keypad(stdscr, TRUE);
+	//attron(A_ALTCHARSET);
 
 	height = LINES;
 	width = COLS/4;
@@ -22,7 +48,7 @@ int main(int argc, char *argv[]){
 
 	refresh();
 	title_win = create_newwin(3, 3*COLS/4, 0, 0);
-	input_win = create_newwin(height, width, starty, startx);
+	input_win = newwin(height, width, starty, startx);
 	scrollok(input_win, TRUE);
 	output_win = newwin(LINES-3, (3*COLS/4) - 2, 3, 1);
 	scrollok(output_win, TRUE);
@@ -53,7 +79,8 @@ int main(int argc, char *argv[]){
 	whitespaces[width - 3 - strlen("Message: ")] = '\0';
 	while(1){
 		//mvwscanw(input_win, LINES-2, strlen("Message: "), "%s", msg);
-		mvwgetstr(input_win, LINES - 3, strlen("Message: "), msg);
+		//pthread_create(&h, NULL, getarrows, NULL);
+		mvwgetnstr(input_win, LINES - 3, strlen("Message: "), msg, 512);
 		
 		char* p;
 		if((p = strchr(msg, '\n')) != NULL) *p = '\0';
@@ -77,6 +104,8 @@ int main(int argc, char *argv[]){
 	}
 	free(whitespaces);
 	free(whitespaces2);
+	//pthread_cancel(h);
+	//pthread_join(h, NULL);
 	pthread_cancel(h1);
 	pthread_join(h1, NULL);
 	pthread_cancel(h2);

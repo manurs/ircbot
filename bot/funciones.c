@@ -20,8 +20,8 @@ int check_usr(char * usr){
 	while(getline(&buff, &size, pFile) != -1){
 		char*p;
 		if((p = strchr(buff, '\n')) != NULL) *p = '\0';
-		wprintw(output_win, "buffer leido:[%s]usr:[%s]\n", buff, usr);
-		wrefresh(output_win);
+		//wprintw(output_win, "buffer leido:[%s]usr:[%s]\n", buff, usr);
+		//wrefresh(output_win);
 		fflush(stdout);
 		if(strcmp(usr, buff) == 0){
 			free(buff);
@@ -41,6 +41,7 @@ void * servRecv(void *args){
 	char *command, *usr, *trash;
 	int aux;
 	int send = 1;
+	int loro = 0;
 	char* ultra_trash;
 	char maximum_trash[1024];
 	while(1){
@@ -52,15 +53,15 @@ void * servRecv(void *args){
 			strcpy(aux3, buf);
 			char* p;
 			while((p = strchr(aux3, '\r')) != NULL) *p = '/';
-			wprintw(output_win, "\n%d recibido: %s\n\n",aux,aux3);
+			wprintw(output_win, "%d recibido: %s\n",aux,aux3);
 			wrefresh(output_win);
 			usr = strtok (buf,"!");
 
 			if(usr==NULL)
 				continue;
 			//strcpy(usr,&usr[1]);
-			wprintw(output_win, "usr = %s\n\n",usr);
-			wrefresh(output_win);
+			//wprintw(output_win, "usr = %s\n\n",usr);
+			//wrefresh(output_win);
 			trash = strtok (NULL," ");
 			if(trash==NULL)
 				continue;
@@ -69,17 +70,17 @@ void * servRecv(void *args){
 			if(command==NULL)
 				continue;
 			trash = strtok (NULL," ");
-			wprintw(output_win, "trash=%s\n",trash);
-			wrefresh(output_win);
+			//wprintw(output_win, "trash=%s\n",trash);
+			//wrefresh(output_win);
 			strcpy(ch, trash);
-			wprintw(output_win, "command = %s\n\n",command);
-			wrefresh(output_win);
+			//wprintw(output_win, "command = %s\n\n",command);
+			//wrefresh(output_win);
 			if(strcmp(command,"JOIN")==0){
-				wprintw(output_win, "%s\n",usr);
-				wrefresh(output_win);
+				//wprintw(output_win, "%s\n",usr);
+				//wrefresh(output_win);
 				sprintf(aux2,"MODE #cosas +o %s%c%c",usr,0x0d,0x0a);
-				wprintw(output_win, " %s",aux2);
-				wrefresh(output_win);
+				//wprintw(output_win, " %s",aux2);
+				//wrefresh(output_win);
 				escribir(sockfd, aux2);
 				
 			} else if(strcmp(command,"PRIVMSG")==0){
@@ -89,23 +90,23 @@ void * servRecv(void *args){
 				wrefresh(output_win);
 				ultra_trash = malloc(sizeof(char)*strlen(trash));
 				
-				wprintw(output_win, "USR=[%s]", usr);
-				wrefresh(output_win);
+				//wprintw(output_win, "USR=[%s]", usr);
+				//wrefresh(output_win);
 				strcpy(ultra_trash, &trash[1]);
-				wprintw(output_win, "%lu\n",sizeof(trash));
-				wrefresh(output_win);
+				//wprintw(output_win, "%lu\n",sizeof(trash));
+				//wrefresh(output_win);
 				wprintw(output_win, "ultra_trash = %s\n", ultra_trash);
 				wrefresh(output_win);
 
 				//maximum_trash = malloc(strlen(ultra_trash) + strlen(usr) + strlen("PRIVMSG"));
 				maximum_trash[0] = '\0';
-				char dest[] = "dr_nick";
+				//char dest[] = "dr_nick";
 
-				wprintw(output_win, "ch=%s\n",ch);
-				wprintw(output_win, "usr==%s\n", usr);
+				//wprintw(output_win, "ch=%s\n",ch);
+				//wprintw(output_win, "usr==%s\n", usr);
 				//sprintf(maximum_trash, "PRIVMSG %s :<%s@%s> %s", dest, &usr[1], ch, ultra_trash);
 				wrefresh(output_win);
-				if(iscommand(ultra_trash) == 0){
+				if(iscommand(ultra_trash) == 0 && loro == 1){
 					sprintf(maximum_trash, "PRIVMSG %s :%s", ch, ultra_trash);
 					wprintw(output_win, "maximum_trash:%s\n", maximum_trash);
 					wrefresh(output_win);
@@ -121,10 +122,18 @@ void * servRecv(void *args){
 						send=0;
 						wprintw(output_win, "NSEND\n");
 						wrefresh(output_win);
+					} else if(strncmp(ultra_trash,"LORO",strlen("LORO"))==0){
+						loro=1;
+						wprintw(output_win, "LORO\n");
+						wrefresh(output_win);
+					} else if(strncmp(ultra_trash,"NLORO",strlen("NLORO"))==0){
+						loro=0;
+						wprintw(output_win, "NLORO\n");
+						wrefresh(output_win);
 					}
 
-					wprintw(output_win, "send= %d\n",send);
-					wrefresh(output_win);
+					//wprintw(output_win, "send= %d\n",send);
+					//wrefresh(output_win);
 					if(send ==1){
 						escribir(sockfd, ultra_trash);
 
