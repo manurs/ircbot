@@ -6,13 +6,13 @@ NOTICE AUTH :*** Found your hostname: 72.Red-88-10-173.dynamicIP.rima-tde.net
 :irc.eps.net 004 raspberry irc.eps.net ngircd-21 abBcCioqrRswx abehiIklmMnoOPqQrRstvVz
 :irc.eps.net 005 raspberry RFC2812 IRCD=ngIRCd CHARSET=UTF-8 CASEMAPPING=ascii PREFIX=(qaohv)~&@%+ CHANTYPES=#&+ CHANMODES=beI,k,l,imMnOPQRstVz CHANLIMIT=#&+:20 :are supported on this server
 :irc.eps.net 005 raspberry CHANNELLEN=50 NICKLEN=9 TOPICLEN=490 AWAYLEN=127 KICKLEN=400 MODES=5 MAXLIST=beI:50 EXCEPTS=e INVEX=I PENALTY :are supported on this server
-:irc.eps.net 251 raspberry :There are 34 users and 0 services on 1 servers
+:irc.eps.net 251 raspberry :There are 32 users and 0 services on 1 servers
 :irc.eps.net 252 raspberry 1 :operator(s) online
-:irc.eps.net 254 raspberry 14 :channels formed
-:irc.eps.net 255 raspberry :I have 34 users, 0 services and 0 servers
-:irc.eps.net 265 raspberry 34 35 :Current local users: 34, Max: 35
-:irc.eps.net 266 raspberry 34 35 :Current global users: 34, Max: 35
-:irc.eps.net 250 raspberry :Highest connection count: 35 (102 connections received)
+:irc.eps.net 254 raspberry 15 :channels formed
+:irc.eps.net 255 raspberry :I have 32 users, 0 services and 0 servers
+:irc.eps.net 265 raspberry 32 35 :Current local users: 32, Max: 35
+:irc.eps.net 266 raspberry 32 35 :Current global users: 32, Max: 35
+:irc.eps.net 250 raspberry :Highest connection count: 35 (120 connections received)
 :irc.eps.net 375 raspberry :- irc.eps.net message of the day
 :irc.eps.net 372 raspberry :- **************************************************
 :irc.eps.net 372 raspberry :- *                H    O    L    A                *
@@ -116,62 +116,4 @@ NOTICE AUTH :*** Found your hostname: 72.Red-88-10-173.dynamicIP.rima-tde.net
 :irc.eps.net 372 raspberry :- desepués de la primera llamada a la función. Cuando no 
 :irc.eps.net 372 raspberry :- haya comando nuevo esta string deberá tener en su primer
 :irc.eps.net 372 raspberry :- carácter un \0.
-:irc.eps.net 376 raspberry :End of MOTD command
-:raspberry!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net JOIN :#cosas
-:irc.eps.net 332 raspberry #cosas :https://3.bp.blogspot.com/-rt64xPla27M/UMhmhP6cqpI/AAAAAAAACbQ/Aqod_HGLlvQ/s1600/Stalldalf-5.png
-:irc.eps.net 333 raspberry #cosas ignucius 1424639417
-:irc.eps.net 353 raspberry = #cosas :raspberry RBA @dr_nick @daikirai @Isa @vader @ignucius @Marvin
-:irc.eps.net 366 raspberry #cosas :End of NAMES list
-:irc.eps.net 482 raspberry #cosas :You are not channel operator
-:ignucius!~ignucius@168.Red-83-50-100.dynamicIP.rima-tde.net PRIVMSG #cosas :hola
-:RBA!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :hola
-:irc.eps.net 421 raspberry hola :Unknown command
-:ignucius!~ignucius@168.Red-83-50-100.dynamicIP.rima-tde.net PRIVMSG #cosas :bien
-:RBA!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :bien
-:irc.eps.net 421 raspberry bien :Unknown command
-:dr_nick!~srogers@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :NLORO
-:irc.eps.net PONG irc.eps.net :metis.ii.uam.es
-:dr_nick!~srogers@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :LORO
-:dr_nick!~srogers@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :PIM PAM
-:RBA!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :PIM PAM
-:RBA!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :PIM PAM
-:RBA!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :PIM PAM
-:RBA!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :PIM PAM
-:RBA!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :PIM PAM
-:RBA!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :PIM PAM
-:irc.eps.net PONG irc.eps.net :metis.ii.uam.es
-:RBA!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :PIM PAM
-:RBA!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :PIM PAM
-:RBA!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :PIM PAM
-:RBA!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :PIM PAM
-:RBA!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :PIM PAM
-:irc.eps.net PONG irc.eps.net :metis.ii.uam.es
-:RBA!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :PIM PAM
-.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :NICK RBA
-:raspberry!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net NICK :RBA
-:irc.eps.net PONG irc.eps.net :metis.ii.uam.es
-:Isa!~androirc@95.131.169.249 PRIVMSG #cosas :Alguien me explica que es eso de LORO?
-:irc.eps.net PONG irc.eps.net :metis.ii.uam.es
-:ignucius!~ignucius@168.Red-83-50-100.dynamicIP.rima-tde.net PRIVMSG #cosas :LORO
-:raspberry!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net JOIN :#cosas
-:irc.eps.net 482 RBA #cosas :You are not channel operator
-:ignucius!~ignucius@168.Red-83-50-100.dynamicIP.rima-tde.net PRIVMSG #cosas :hola
-:ignucius!~ignucius@168.Red-83-50-100.dynamicIP.rima-tde.net PRIVMSG #cosas :bien
-:dr_nick!~srogers@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :NLORO
-:dr_nick!~srogers@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :LORO
-:irc.eps.net PONG irc.eps.net :metis.ii.uam.es
-:dr_nick!~srogers@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :PIM PAM
-:raspberry!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :PIM PAM
-:raspberry!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :PIM PAM
-:raspberry!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :PIM PAM
-:raspberry!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :PIM PAM
-:raspberry!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :PIM PAM
-:raspberry!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :PIM PAM
-:irc.eps.net PONG irc.eps.net :metis.ii.uam.es
-:raspberry!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :PIM PAM
-:raspberry!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :PIM PAM
-:raspberry!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :PIM PAM
-:raspberry!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :PIM PAM
-:raspberry!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :PIM PAM
-:irc.eps.net PONG irc.eps.net :metis.ii.uam.es
-:raspberry!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :PIM PAM
+:irc.eps.net 376 raspberry :End

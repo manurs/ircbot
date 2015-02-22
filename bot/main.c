@@ -41,7 +41,7 @@ int main(int argc, char *argv[]){
 		wrefresh(output_win);
 	}*/
 
-	signal(SIGINT, intHandler);
+	//signal(SIGINT, intHandler);
 	plogf = fopen("log", "w+");
 	connect_client(&h1, &h2);
 	int i = LINES-5;

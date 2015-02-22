@@ -131,7 +131,7 @@ void * servRecv(void *args){
 						loro=0;
 						wprintw(output_win, "NLORO\n");
 						wrefresh(output_win);
-					} else if (send ==1){
+					} else if (send ==1 && iscommand(ultra_trash) == 1){
 						escribir(sockfd, ultra_trash);
 					}
 
