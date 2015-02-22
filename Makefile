@@ -10,12 +10,12 @@
 
 # # Compiling options
         CFLAGS = -Wall -Wextra -std=gnu99 -pedantic -g -O3 -Wno-unused-parameter #-Wno-unused-result
-        LIBS = -lpthread
+        LIBS = -lpthread -lncurses
 
 # # Source code folder
         DIR = $(shell basename "$(CURDIR)")
         SRCDIR = bot
-        SOURCES = $(SRCDIR)/funciones.c $(SRCDIR)/main.c
+        SOURCES = $(wildcard $(SRCDIR)/*.c)
         OBJS = $(SOURCES:.c=.o)
         INCLUDES = $(SRCDIR)/funciones.h 
         TARFLAG = -cvzf
@@ -29,7 +29,7 @@
 # # Executables
 # #=============================================================
 
-        EXEC = ircbot
+        EXEC = ircbot 
          
 # #=============================================================
 # # Targets

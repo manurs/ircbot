@@ -10,6 +10,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <pthread.h>
+#include <ncurses.h>
+
 
 void connect_client(pthread_t* h1, pthread_t* h2);
 int abrirSocketTCP();
@@ -26,4 +28,5 @@ int iscommand(char* s);
 
 
 int sockfd;
+WINDOW *input_win, *title_win, *output_win;
 #endif
