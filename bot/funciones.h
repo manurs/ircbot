@@ -10,7 +10,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <pthread.h>
-#include <ncurses.h>
+#include <curses.h>
+#include <signal.h>
 
 
 void connect_client(pthread_t* h1, pthread_t* h2);
@@ -29,4 +30,5 @@ int iscommand(char* s);
 
 int sockfd;
 WINDOW *input_win, *title_win, *output_win;
+FILE *plogf;
 #endif

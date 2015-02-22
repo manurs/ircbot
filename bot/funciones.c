@@ -53,8 +53,9 @@ void * servRecv(void *args){
 			strcpy(aux3, buf);
 			char* p;
 			while((p = strchr(aux3, '\r')) != NULL) *p = '/';
-			wprintw(output_win, "%d recibido: %s\n",aux,aux3);
+			if (strstr(aux3, "PONG") == NULL) wprintw(output_win, "Recibido: %s", aux3);
 			wrefresh(output_win);
+			fprintf(plogf, "%s", buf);
 			usr = strtok (buf,"!");
 
 			if(usr==NULL)
@@ -130,14 +131,12 @@ void * servRecv(void *args){
 						loro=0;
 						wprintw(output_win, "NLORO\n");
 						wrefresh(output_win);
+					} else if (send ==1){
+						escribir(sockfd, ultra_trash);
 					}
 
 					//wprintw(output_win, "send= %d\n",send);
 					//wrefresh(output_win);
-					if(send ==1){
-						escribir(sockfd, ultra_trash);
-
-					}
 				}
 				
 				free(ultra_trash);
@@ -180,6 +179,10 @@ int iscommand(char* s){
 	} else if(strncmp(s,"TOPIC",strlen("TOPIC"))==0){
 		return 1;
 	} else if(strncmp(s,"PART",strlen("PART"))==0){
+		return 1;
+	} else if(strncmp(s,"LORO",strlen("LORO"))==0){
+		return 1;
+	} else if(strncmp(s,"NLORO",strlen("NLORO"))==0){
 		return 1;
 	}
 	return 0;

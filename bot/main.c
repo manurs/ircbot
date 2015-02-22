@@ -2,32 +2,7 @@
 
 WINDOW *create_newwin(int height, int width, int starty, int startx);
 
-void* getarrows(void* args){
-	int k;
-	char c;
-	while(1){
-		k = wgetch(input_win);
-		switch(k){
-			case KEY_UP:
-				break;
-			case KEY_DOWN:
-				break;
-			case KEY_RIGHT:
-				break;
-			case KEY_LEFT:
-				break;
-			case KEY_ENTER:
-				c = '\n';
-				write(0, &c, 1);
-				break;
-			default:
-				c = (char) k;
-				write(0, &c, 1);
-				break;
-		}
-	}
-	pthread_exit(NULL);
-}
+void intHandler(int);
 
 int main(int argc, char *argv[]){
 	int startx, starty, width, height;
@@ -53,7 +28,7 @@ int main(int argc, char *argv[]){
 	output_win = newwin(LINES-3, (3*COLS/4) - 2, 3, 1);
 	scrollok(output_win, TRUE);
 
-	mvwprintw(title_win, 1, 1, "IRCBot (QUIT to exit)");
+	mvwprintw(title_win, 1, 1, "IRCBot (QUIT to exit, Ctrl+C to enable scrolling, F1 to disable)");
 	wrefresh(title_win);
 
 	mvwprintw(input_win, LINES - 3, 1, "Message:");
@@ -66,6 +41,8 @@ int main(int argc, char *argv[]){
 		wrefresh(output_win);
 	}*/
 
+	signal(SIGINT, intHandler);
+	plogf = fopen("log", "w+");
 	connect_client(&h1, &h2);
 	int i = LINES-5;
 	char *whitespaces = malloc(width - 2);
@@ -113,6 +90,7 @@ int main(int argc, char *argv[]){
 	delwin(input_win);
 	delwin(title_win);
 	delwin(output_win);
+	fclose(plogf);
 	endwin();			/* End curses mode		  */
 	return 0;
 
@@ -129,4 +107,29 @@ WINDOW *create_newwin(int height, int width, int starty, int startx){
 	wrefresh(local_win);		/* Show that box 		*/
 
 	return local_win;
+}
+
+
+void intHandler(int dummy) {
+    int c;
+    //noecho();
+    idlok(output_win, TRUE);
+    scrollok(output_win, TRUE);
+    wprintw(output_win, "Interrupcion capturada\n");
+    wrefresh(output_win);
+    while((c = getch()) != KEY_F(1)){
+		switch(c)
+		{	case KEY_UP:
+				wscrl(output_win, 1);
+				wrefresh(output_win);
+				break;
+			case KEY_DOWN:
+				wscrl(output_win, -1);
+				wrefresh(output_win);
+				break;
+			default:
+				break;
+		}
+	}
+	echo();
 }
