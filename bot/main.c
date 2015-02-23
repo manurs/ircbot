@@ -5,13 +5,17 @@ WINDOW *create_newwin(int height, int width, int starty, int startx);
 void intHandler(int);
 
 pthread_t /*h,*/ h1, h2;
-char *whitespaces, *whitespaces2;
+char *whitespaces = NULL, *whitespaces2 = NULL;
 
 int main(int argc, char *argv[]){
 	int startx, starty, width, height;
 	//int ch;
 	char msg[512];
 
+	title_win = NULL;
+	input_win = NULL;
+	output_win = NULL;
+	plogf = NULL;
 	initscr();			/* Start curses mode 		*/
 	cbreak();			
 	echo();
@@ -142,8 +146,8 @@ WINDOW *create_newwin(int height, int width, int starty, int startx){
 
 
 void intHandler(int dummy) {
-	free(whitespaces);
-	free(whitespaces2);
+	if(whitespaces) free(whitespaces);
+	if(whitespaces2) free(whitespaces2);
 	pthread_cancel(h1);
 	pthread_join(h1, NULL);
 	pthread_cancel(h2);

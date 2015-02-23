@@ -13,12 +13,12 @@ char * posiciona(char crt, char *str){
 	return &str[i+1];
 }
 int check_usr(char * usr){
-	FILE *pFile;
+	FILE *pFile = NULL;
 	size_t size = 0;
 	pFile = fopen ("usr.txt","r");
 	char *buff = NULL;
 	while(getline(&buff, &size, pFile) != -1){
-		char*p;
+		char*p = NULL;
 		if((p = strchr(buff, '\n')) != NULL) *p = '\0';
 		//wprintw(output_win, "buffer leido:[%s]usr:[%s]\n", buff, usr);
 		//wrefresh(output_win);
@@ -38,11 +38,11 @@ int check_usr(char * usr){
 }
 void * servRecv(void *args){
 	char buf[512], aux2[512], ch[32], aux3[512];
-	char *command, *usr, *trash;
+	char *command = NULL, *usr = NULL, *trash = NULL;
 	int aux;
-	char* ultra_trash;
+	char* ultra_trash =  NULL;
 	char maximum_trash[1024];
-	char* p;
+	char* p = NULL;
 	while(1){
 		command=NULL;
 		usr=NULL;
@@ -153,6 +153,7 @@ void * servRecv(void *args){
 				}
 				excptloro = 0;
 				free(ultra_trash);
+				ultra_trash = NULL;
 				//free(ch);
 	    	} /*else{
 	    		if(strstr(usr, "raspberry") == NULL){
@@ -203,7 +204,7 @@ int iscommand(char* s){
 
 void connect_client(pthread_t* h1, pthread_t* h2)
 {
-	struct addrinfo hints, *res;
+	struct addrinfo hints, *res = NULL;
 	int nick;// user;
 	//char port[20];
 	char command[256];
@@ -246,7 +247,7 @@ void connect_client(pthread_t* h1, pthread_t* h2)
 	
 	sprintf(command, "NICK raspberry%c%cUSER raspberry raspberry metis.ii.uam.es :raspberry%c%c",0X0d,0X0d,0X0d,0X0d);
 	nick=escribir(sockfd,command);
-	char* p;
+	char* p = NULL;
 	while((p = strchr(command, '\r')) != NULL) *p = '/';
 	wprintw(output_win, "%s, %d\n",command,nick );
 	wrefresh(output_win);
