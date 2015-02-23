@@ -1,27 +1,26 @@
 Recibido: NOTICE AUTH :*** Looking up your hostname/
-Recibido: NOTICE AUTH :*** Found your hostname: 72.Red-88-10-173.dynamicIP.rima-tde.net/
-:irc.eps.net 001 raspberry :Welcome to the Internet Relay Network raspberry!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net/
+Recibido: NOTICE AUTH :*** Found your hostname: cliente150.wlan.uam.es/
+:irc.eps.net 001 raspberry :Welcome to the Internet Relay Network raspberry!~raspberry@cliente150.wlan.uam.es/
 :irc.eps.net 002 raspberry :Your host is irc.eps.net, running version ngircd-21 (x86_64/pc/linux-gnu)/
 :irc.eps.net 003 raspberry :This server has been started Sun Feb 22 2015 at 20:52:12 (CET)/
 :irc.eps.net 004 raspberry irc.eps.net ngircd-21 abBcCioqrRswx abehiIklmMnoOPqQrRstvVz/
 :irc.eps.net 005 raspberry RFC2812 IRCD=ngIRCd CHARSET=UTF-8 CASEMAPPING=ascii PREFIX=(qaohv)~&@%+ CHANTYPES=#&+ CHANMODES=beI,k,l,imMnOPQRstVz CHANLIMIT=#&+:20 :are supported on this server/
 :irc.eps.net 005 raspberry CHANNELLEN=50 NICKLEN=9 TOPICLEN=490 AWAYLEN=127 KICKLEN=400 MODES=5 MAXLIST=beI:50 EXCEPTS=e INVEX=I PENALTY :are supported on this server/
-:irc.eps.net 251 raspberry :There are 30 users and 0 services on 1 servers/
-:irc.eps.net 252 raspberry 1 :operator(s) online/
-:irc.eps.net 254 raspberRecibido: ry 20 :channels formed/
-:irc.eps.net 255 raspberry :I have 30 users, 0 services and 0 servers/
-:irc.eps.net 265 raspberry 30 43 :Current local users: 30, Max: 43/
-:irc.eps.net 266 raspberry 30 43 :Current global users: 30, Max: 43/
-:irc.eps.net 250 raspberry :Highest connection count: 43 (586 connections received)/
+:irc.eps.net 251 raspberry :There are 33 users and 0 services on 1 servers/
+:irc.eps.net 254 raspberry 20 :channels formed/
+:irc.eps.net 255 raspberry :I have 33 users, 0 services and Recibido: 0 servers/
+:irc.eps.net 265 raspberry 33 43 :Current local users: 33, Max: 43/
+:irc.eps.net 266 raspberry 33 43 :Current global users: 33, Max: 43/
+:irc.eps.net 250 raspberry :Highest connection count: 43 (1053 connections received)/
 :irc.eps.net 375 raspberry :- irc.eps.net message of the day/
-:irc.eps.net 372 raspberry :- **************************************************/
+:irc.eps.net 372 raspberry :- ********************************************Recibido: ******/
 :irc.eps.net 372 raspberry :- *                H    O    L    A                */
 :irc.eps.net 372 raspberry :- *  Este es un servidor irc exclusivamente        */
 :irc.eps.net 372 raspberry :- *  dedicado a la asignatura de Arquitectura de   */
 :irc.eps.net 372 raspberry :- *  Redes 2 de Ingeniería Informática de la UAM.  */
 :irc.eps.net 372 raspberry :- **************************************************/
 :irc.eps.net 372 raspberry :- *         A   T   E   N   C   I   Ó   N          */
-:irc.eps.net 372 raspberry :- *  Existe un cRecibido: anal permanente para que todos     */
+:irc.eps.net 372 raspberry :- *  Existe un canal permanente para que todos     */
 :irc.eps.net 372 raspberry :- *  podáis acudir a él, este canal es: #redes2    */
 :irc.eps.net 372 raspberry :- **************************************************/
 :irc.eps.net 372 raspberry :- /
@@ -30,7 +29,7 @@ Recibido: NOTICE AUTH :*** Found your hostname: 72.Red-88-10-173.dynamicIP.rima-
 :irc.eps.net 372 raspberry :- /
 :irc.eps.net 372 raspberry :- Cuestion -2/
 :irc.eps.net 372 raspberry :- -----------/
-:irc.eps.net 372 raspberry :- Información de los comandos en castellano en el RFC: /
+:irc.eps.net 372 raspberry :- IRecibido: nformación de los comandos en castellano en el RFC: /
 :irc.eps.net 372 raspberry :- http://www.rfc-es.org/rfc/rfc1459-es.txt/
 :irc.eps.net 372 raspberry :- /
 :irc.eps.net 372 raspberry :- Cuestion -1/
@@ -38,7 +37,7 @@ Recibido: NOTICE AUTH :*** Found your hostname: 72.Red-88-10-173.dynamicIP.rima-
 :irc.eps.net 372 raspberry :- Si algún elemento no parece funcionar correctamente, reportar/
 :irc.eps.net 372 raspberry :- según el procedimiento indicado y dedicar el tiempo a otros/
 :irc.eps.net 372 raspberry :- elementos de la práctica mientras se recibe la respuesta del/
-:irc.eps.net 372 raspbeRecibido: rry :- reporte./
+:irc.eps.net 372 raspberry :- reporte./
 :irc.eps.net 372 raspberry :- /
 :irc.eps.net 372 raspberry :- Cuestion 0/
 :irc.eps.net 372 raspberry :- ----------/
@@ -47,7 +46,7 @@ Recibido: NOTICE AUTH :*** Found your hostname: 72.Red-88-10-173.dynamicIP.rima-
 :irc.eps.net 372 raspberry :- Cuestion 1/
 :irc.eps.net 372 raspberry :- ----------/
 :irc.eps.net 372 raspberry :- Lo errores de gtk están casi siempre asociados a que/
-:irc.eps.net 372 raspberry :- se utilizan funciones que acceden al interfaz desde/
+:irc.eps.net 372 raspberrRecibido: y :- se utilizan funciones que acceden al interfaz desde/
 :irc.eps.net 372 raspberry :- un hilo distinto del interfaz./
 :irc.eps.net 372 raspberry :- /
 :irc.eps.net 372 raspberry :- TODAS las funciones que acceden al interfaz, no sólo/
@@ -56,9 +55,9 @@ Recibido: NOTICE AUTH :*** Found your hostname: 72.Red-88-10-173.dynamicIP.rima-
 :irc.eps.net 372 raspberry :- /
 :irc.eps.net 372 raspberry :- Cuestion 2/
 :irc.eps.net 372 raspberry :- ----------/
-:irc.eps.net 372 raspberry :- FuncioneRecibido: s útiles para obtener la IP propia: getifaddrs, /
+:irc.eps.net 372 raspberry :- Funciones útiles para obtener la IP propia: getifaddrs, /
 :irc.eps.net 372 raspberry :- getsockname, gethostbyname y gethostbyaddr. Utilizad man /
-:irc.eps.net 372 raspberry :- para comprender su funcionalidad. Junto a ellas es/
+:irc.eps.net 372 raspberry :- para comprender su funcRecibido: ionalidad. Junto a ellas es/
 :irc.eps.net 372 raspberry :- interesante comprender las funciones inet_pton, inet_ntoa e/
 :irc.eps.net 372 raspberry :- inet_aton./
 :irc.eps.net 372 raspberry :- /
@@ -70,21 +69,21 @@ Recibido: NOTICE AUTH :*** Found your hostname: 72.Red-88-10-173.dynamicIP.rima-
 :irc.eps.net 372 raspberry :- embargo, todos los parámetros y el mensaje se parsean/
 :irc.eps.net 372 raspberry :- corrctamente. Las funciones que pueden hacer esto se/
 :irc.eps.net 372 raspberry :- distinguen porque el parámetro correspondiente al /
-:irc.eps.nRecibido: et 372 raspberry :- mensaje no es el último./
+:irc.eps.net 372 raspberry :- mensaje no es el último./
 :irc.eps.net 372 raspberry :- /
 :irc.eps.net 372 raspberry :- Cuestion 4/
 :irc.eps.net 372 raspberry :- ----------/
-:irc.eps.net 372 raspberry :- Tipos de funciones de parseo:/
+:irc.eps.net 372 raspberry :- Recibido: Tipos de funciones de parseo:/
 :irc.eps.net 372 raspberry :- - IRC_XXXX: funciones que construyen mensajes IRC./
 :irc.eps.net 372 raspberry :- - IRCParse_XXXX: funciones que parsean mensajes IRC./
 :irc.eps.net 372 raspberry :- - IRCUserParse_XXXX: funciones que parsean comandos de/
 :irc.eps.net 372 raspberry :- usuario. Los comandos de usuario pueden corresponderse/
-:irc.eps.net 372 raspberry :- con uno o varios mensajes IRC. Los comandos de usuario/
+:Recibido: irc.eps.net 372 raspberry :- con uno o varios mensajes IRC. Los comandos de usuario/
 :irc.eps.net 372 raspberry :- son los que introduce un usuario en el interfaz y siguen/
 :irc.eps.net 372 raspberry :- un convenio general no demasiado estándar. En algunos/
 :irc.eps.net 372 raspberry :- casos no se dispone en este comando de todos los/
 :irc.eps.net 372 raspberry :- parámetros necesarios para crear el mensaje IRC y por/
-:irc.eps.netRecibido:  372 raspberry :- tanto es necesario adquirirlos del interfaz./
+:irc.eps.net 372 raspberry :- tanto es necesario adquirirlos del interfaz./
 :irc.eps.net 372 raspberry :- /
 :irc.eps.net 372 raspberry :- Cuestion 5/
 :irc.eps.net 372 raspberry :- ----------/
@@ -92,15 +91,15 @@ Recibido: NOTICE AUTH :*** Found your hostname: 72.Red-88-10-173.dynamicIP.rima-
 :irc.eps.net 372 raspberry :- corresponden con los mensajes correspondientes porque/
 :irc.eps.net 372 raspberry :- algunos servidores basados en protocolos no RFC cambian/
 :irc.eps.net 372 raspberry :- su estructura. En estos casos se presenta el mensaje/
-:irc.eps.net 372 raspberry :- recibido completamente y ya está./
+:irc.eps.net 372 raspberry :- recibido compRecibido: letamente y ya está./
 :irc.eps.net 372 raspberry :- /
 :irc.eps.net 372 raspberry :- Cuestion 6/
 :irc.eps.net 372 raspberry :- ----------/
 :irc.eps.net 372 raspberry :- Los mensajes recibidos se presentarán normalmente en la/
 :irc.eps.net 372 raspberry :- ventana de sistema salvo que sean propios de un canal y/
-:irc.eps.net 372 raspberry :- por tanto se presentarán en ese canal./
+:irc.eps.net 372 raspberry :- por tanto se presentarán Recibido: en ese canal./
 :irc.eps.net 372 raspberry :- /
-:irc.eps.net 372 rasRecibido: pberry :- Cuestion 7/
+:irc.eps.net 372 raspberry :- Cuestion 7/
 :irc.eps.net 372 raspberry :- ----------/
 :irc.eps.net 372 raspberry :- Cuando se envía un mensaje debe enviarse con la longitud/
 :irc.eps.net 372 raspberry :- correcta. Si se envían caracteres de más el servidor /
@@ -113,62 +112,12 @@ Recibido: NOTICE AUTH :*** Found your hostname: 72.Red-88-10-173.dynamicIP.rima-
 :irc.eps.net 372 raspberry :- explicada esta función y sus tres retornos: IRC_OK, IRC_EOP/
 :irc.eps.net 372 raspberry :- e IRC_ENDPIPE. Se sugiere el uso de una string estática /
 :irc.eps.net 372 raspberry :- para guardar comandos incompletos y que se suma siempre/
-:irc.eps.net 372 raspberry :- desepués de la primera llamada a la función. Cuando no /
-:irc.eps.net 372 raRecibido: spberry :- haya comando nuevo esta string deberáng deberá tener en su primer/
+:irc.eps.net 372 raspberry :- desepués dRecibido: e la primera llamada a la función. Cuando no /
+:irc.eps.net 372 raspberry :- haya comando nuevo esta string deberá tener en su primer/
 :irc.eps.net 372 raspberry :- carácter un \0./
 :irc.eps.net 376 raspberry :End of MOTD command/
-Recibido: :raspberry!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net JOIN :#cosas/
-:irc.eps.net 353 raspberry = #cosas :raspberry @ignucius @vader @dr_nick/
-:irc.eps.net 366 raspberry #cosas :End of NAMES list/
-Enviado: MODE #cosas +o :raspberry
-Recibido: :irc.eps.net 482 raspberry #cosas :You are not channel operator/
-Recibido: :dr_nick!~srogers@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :NICK GLaDOS/
-Enviado: NICK GLaDOS/
-Recibido: :raspberry!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net NICK :GLaDOS/
-Recibido: :dr_nick!~srogers@72.Red-88-10-173.dynamicIP.rima-tde.net MODE #cosas +o GLaDOS/
-Recibido: :irc.eps.net PONG irc.eps.net :metis.ii.uam.es/
-Recibido: :raspberry!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net JOIN :#cosas/
-Enviado: MODE #cosas +o :raspberry
-Recibido: :GLaDOS!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net MODE #cosas +o raspberry/
-Recibido: :vader!~Manu@cliente159.wlan.uam.es PRIVMSG #cosas :que hay que hacer?/
-Recibido: :irc.eps.net PONG irc.eps.net :metis.ii.uam.es/
-Recibido: :dr_nick!~srogers@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :LORO/
-Recibido: :dr_nick!~srogers@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :?/
-Enviado: PRIVMSG #cosas :?/
-Recibido: :raspberry!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :?/
-Recibido: :irc.eps.net PONG irc.eps.net :metis.ii.uam.es/
-Recibido: :dr_nick!~srogers@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :bien/
-Enviado: PRIVMSG #cosas :bien/
-Recibido: :raspberry!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :bien/
-Recibido: :dr_nick!~srogers@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :ya no se retroalimentan/
-Enviado: PRIVMSG #cosas :ya no se retroalimentan/
-Recibido: :raspberry!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :ya no se retroalimentan/
-Recibido: :dr_nick!~srogers@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :y no dara spoofed nunca/
-Enviado: PRIVMSG #cosas :y no dara spoofed nunca/
-Recibido: :raspberry!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :y no dara spoofed nunca/
-Recibido: :irc.eps.net PONG irc.eps.net :metis.ii.uam.es/
-Recibido: :dr_nick!~srogers@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :muahahahaha/
-Enviado: PRIVMSG #cosas :muahahahaha/
-Recibido: :raspberry!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :muahahahaha/
-Recibido: :dr_nick!~srogers@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :NLORO/
-Recibido: :irc.eps.net PONG irc.eps.net :metis.ii.uam.es/
-Recibido: :irc.eps.net PONG irc.eps.net :metis.ii.uam.es/
-Recibido: :vader!~Manu@cliente159.wlan.uam.es PRIVMSG #cosas :pues ya no mola/
-Recibido: :irc.eps.net PONG irc.eps.net :metis.ii.uam.es/
-Recibido: :dr_nick!~srogers@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :bueno, si pongo dos en un canal donde este hablando bastante gente/
-Recibido: :dr_nick!~srogers@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :si mola/
-Recibido: :dr_nick!~srogers@72.Red-88-10-173.dynamicIP.rima-tde.net PRIVMSG #cosas :xD/
-Recibido: :irc.eps.net PONG irc.eps.net :metis.ii.uam.es/
-Recibido: :raspberry!~raspberry@72.Red-88-10-173.dynamicIP.rima-tde.net QUIT :Client closed connection/
 Recibido: :irc.eps.net PONG irc.eps.net :metis.ii.uam.es/
 Recibido: :irc.eps.net PONG irc.eps.net :metis.ii.uam.es/
 Recibido: :irc.eps.net PONG irc.eps.net :metis.ii.uam.es/
-Recibido: :irc.eps.net PONG irc.eps.net :metis.ii.uam.es/
-Recibido: :irc.eps.net PONG irc.eps.net :metis.ii.uam.es/
-Recibido: :irc.eps.net 421 GLaDOS LORO :Unknown command/
-Recibido: :irc.eps.net PONG irc.eps.net :metis.ii.uam.es/
-Recibido: :irc.eps.net PONG irc.eps.net :metis.ii.uam.es/
-Recibido: :irc.eps.net PONG irc.eps.net :metis.ii.uam.es/
-Recibido: :irc.eps.net PONG irc.eps.net :metis.ii.uam.es/
-Recibido: :irc.eps.net PONG irc.eps.net :metis.ii.uam.es/
-Recibido: :irc.eps.net PONG irc.eps.net :metis.ii.u
+Recibido: :irc.eps.net NOTICE raspberry :Connection statistics: client 0.1 kb, server 8.1 kb./
+ERROR :Closing connection/

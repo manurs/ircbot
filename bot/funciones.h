@@ -11,7 +11,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <pthread.h>
-#include <curses.h>
+#include <ncurses.h>
 #include <signal.h>
 
 
@@ -30,6 +30,7 @@ int iscommand(char* s);
 
 
 int sockfd;
+int sendv, loro, excptloro;
 WINDOW *input_win, *title_win, *output_win;
 FILE *plogf;
 #endif

@@ -44,6 +44,9 @@ int main(int argc, char *argv[]){
 	}*/
 
 	plogf = fopen("log", "w+");
+	sendv = 1;
+	loro = 0;
+	excptloro = 0;
 	connect_client(&h1, &h2);
 	int i = LINES-5;
 	char *whitespaces = malloc(width);
@@ -64,14 +67,12 @@ int main(int argc, char *argv[]){
 		char* p;
 		if((p = strchr(msg, '\n')) != NULL) *p = '\0';
 		if(strcmp(msg, "QUIT") == 0) break;
+
 		mvwprintw(input_win, i, 1, "%s", msg);
 
 		mvwprintw(input_win, LINES-3, strlen("Message: "), whitespaces2);
 		mvwprintw(input_win, LINES-2, 0, whitespaces);
 		wrefresh(input_win);
-		sprintf(msg,"%s%c%c",msg,0X0d,0X0d);
-		escribir(sockfd,msg);
-		wrefresh(output_win);
 		i -= 2;
 		if(i - 2 <= 0){
 			i = LINES - 5;
@@ -79,6 +80,34 @@ int main(int argc, char *argv[]){
 		mvwprintw(input_win, i, 1, whitespaces);
 		mvwprintw(input_win, i+1, 1, whitespaces);
 		wrefresh(input_win);
+		if(strcmp(msg, "SEND") == 0){
+			sendv = 1;
+			wprintw(output_win, "SEND\n");
+			wrefresh(output_win);
+			continue;
+		}
+		if(strcmp(msg, "NSEND") == 0){
+			sendv = 0;
+			wprintw(output_win, "NSEND\n");
+			wrefresh(output_win);
+			continue;
+		}
+		if(strcmp(msg, "LORO") == 0){
+			loro = 1;
+			excptloro = 0;
+			wprintw(output_win, "LORO\n");
+			wrefresh(output_win);
+			continue;
+		}
+		if(strcmp(msg, "NLORO") == 0){
+			loro = 0;
+			wprintw(output_win, "NLORO\n");
+			wrefresh(output_win);
+			continue;
+		}
+		sprintf(msg,"%s%c%c",msg,0X0d,0X0d);
+		escribir(sockfd,msg);
+		wrefresh(output_win);
 		//if((ch = getch()) == KEY_F(1)) break;
 	}
 	free(whitespaces);

@@ -40,8 +40,6 @@ void * servRecv(void *args){
 	char buf[512], aux2[512], ch[32], aux3[512];
 	char *command, *usr, *trash;
 	int aux;
-	int send = 1;
-	int loro = 0, excptloro = 0;
 	char* ultra_trash;
 	char maximum_trash[1024];
 	char* p;
@@ -56,7 +54,7 @@ void * servRecv(void *args){
 			if (strstr(aux3, " PONG") == NULL) wprintw(output_win, "Recibido: %s", aux3);
 			if (strstr(aux3, "raspberry@") != NULL) excptloro = 1;
 			wrefresh(output_win);
-			fprintf(plogf, "Recibido: %s", aux3);
+			fprintf(plogf, "Recibido: %s", aux3); //hacer con hijos, enviar esto por pipe, leer en orden en padre
 			usr = strtok (buf,"!");
 
 			if(usr==NULL)
@@ -105,7 +103,8 @@ void * servRecv(void *args){
 				maximum_trash[0] = '\0';
 				//char dest[] = "dr_nick";
 
-				//wprintw(output_win, "ch=%s\n",ch);
+				//wprintw(output_win, "EXCPTLORO=%i\n", excptloro);
+				wrefresh(output_win);
 				//wprintw(output_win, "usr==%s\n", usr);
 				//sprintf(maximum_trash, "PRIVMSG %s :<%s@%s> %s", dest, &usr[1], ch, ultra_trash);
 				wrefresh(output_win);
@@ -124,11 +123,11 @@ void * servRecv(void *args){
 
 				}else if(check_usr(&usr[1]) != 0){
 					if(strncmp(ultra_trash,"SEND",strlen("SEND"))==0){
-						send=1;
+						sendv=1;
 						wprintw(output_win, "SEND\n");
 						wrefresh(output_win);
 					}else if(strncmp(ultra_trash,"NSEND",strlen("NSEND"))==0){
-						send=0;
+						sendv=0;
 						wprintw(output_win, "NSEND\n");
 						wrefresh(output_win);
 					} else if(strncmp(ultra_trash,"LORO",strlen("LORO"))==0){
@@ -139,7 +138,7 @@ void * servRecv(void *args){
 						loro=0;
 						wprintw(output_win, "NLORO\n");
 						wrefresh(output_win);
-					} else if (send ==1 && iscommand(ultra_trash) == 1){
+					} else if (sendv ==1 && iscommand(ultra_trash) == 1){
 						escribir(sockfd, ultra_trash);
 						aux3[0] = '\0';
 						strcpy(aux3, ultra_trash);
@@ -155,22 +154,6 @@ void * servRecv(void *args){
 				excptloro = 0;
 				free(ultra_trash);
 				//free(ch);
-	    	} else if(strcmp(command,"LORO")==0){
-				loro=1;
-				wprintw(output_win, "LORO\n");
-				wrefresh(output_win);
-	    	} else if(strcmp(command,"NLORO")==0){
-				loro=0;
-				wprintw(output_win, "NLORO\n");
-				wrefresh(output_win);
-	    	} else if(strcmp(command,"SEND")==0){
-				send=1;
-				wprintw(output_win, "SEND\n");
-				wrefresh(output_win);
-	    	} else if(strcmp(command,"NSEND")==0){
-				send=1;
-				wprintw(output_win, "NSEND\n");
-				wrefresh(output_win);
 	    	} /*else{
 	    		if(strstr(usr, "raspberry") == NULL){
 					maximum_trash[0] = '\0';
