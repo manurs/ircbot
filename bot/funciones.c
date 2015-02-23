@@ -44,6 +44,7 @@ void * servRecv(void *args){
 	int loro = 0;
 	char* ultra_trash;
 	char maximum_trash[1024];
+	char* p;
 	while(1){
 		command=NULL;
 		usr=NULL;
@@ -51,11 +52,10 @@ void * servRecv(void *args){
 		trash=NULL;
 		if(0<(aux=recibir(sockfd, buf))){
 			strcpy(aux3, buf);
-			char* p;
 			while((p = strchr(aux3, '\r')) != NULL) *p = '/';
-			if (strstr(aux3, "PONG") == NULL) wprintw(output_win, "Recibido: %s", aux3);
+			if (strstr(aux3, " PONG") == NULL) wprintw(output_win, "Recibido: %s", aux3);
 			wrefresh(output_win);
-			fprintf(plogf, "%s", buf);
+			fprintf(plogf, "Recibido: %s", aux3);
 			usr = strtok (buf,"!");
 
 			if(usr==NULL)
@@ -80,15 +80,16 @@ void * servRecv(void *args){
 				//wprintw(output_win, "%s\n",usr);
 				//wrefresh(output_win);
 				sprintf(aux2,"MODE #cosas +o %s%c%c",usr,0x0d,0x0a);
-				//wprintw(output_win, " %s",aux2);
-				//wrefresh(output_win);
+				wprintw(output_win, "Enviado: MODE #cosas +o %s\n",usr);
+				wrefresh(output_win);
 				escribir(sockfd, aux2);
+				fprintf(plogf, "Enviado: MODE #cosas +o %s\n", usr);
 				
 			} else if(strcmp(command,"PRIVMSG")==0){
 
 				trash = strtok (NULL,"");
-				wprintw(output_win, "trash=%s\n",trash);
-				wrefresh(output_win);
+				//wprintw(output_win, "trash=%s\n",trash);
+				//wrefresh(output_win);
 				ultra_trash = malloc(sizeof(char)*strlen(trash));
 				
 				//wprintw(output_win, "USR=[%s]", usr);
@@ -96,8 +97,8 @@ void * servRecv(void *args){
 				strcpy(ultra_trash, &trash[1]);
 				//wprintw(output_win, "%lu\n",sizeof(trash));
 				//wrefresh(output_win);
-				wprintw(output_win, "ultra_trash = %s\n", ultra_trash);
-				wrefresh(output_win);
+				//wprintw(output_win, "ultra_trash = %s\n", ultra_trash);
+				//wrefresh(output_win);
 
 				//maximum_trash = malloc(strlen(ultra_trash) + strlen(usr) + strlen("PRIVMSG"));
 				maximum_trash[0] = '\0';
@@ -109,9 +110,15 @@ void * servRecv(void *args){
 				wrefresh(output_win);
 				if(iscommand(ultra_trash) == 0 && loro == 1){
 					sprintf(maximum_trash, "PRIVMSG %s :%s", ch, ultra_trash);
-					wprintw(output_win, "maximum_trash:%s\n", maximum_trash);
-					wrefresh(output_win);
+					//wprintw(output_win, "maximum_trash:%s\n", maximum_trash);
+					//wrefresh(output_win);
 					escribir(sockfd, maximum_trash);
+					aux3[0] = '\0';
+					strcpy(aux3, maximum_trash);
+					while((p = strchr(aux3, '\r')) != NULL) *p = '/';
+					wprintw(output_win, "Enviado: %s", aux3);
+					wrefresh(output_win);
+					fprintf(plogf, "Enviado: %s", aux3);
 					sleep(1);
 
 				}else if(check_usr(&usr[1]) != 0){
@@ -133,6 +140,12 @@ void * servRecv(void *args){
 						wrefresh(output_win);
 					} else if (send ==1 && iscommand(ultra_trash) == 1){
 						escribir(sockfd, ultra_trash);
+						aux3[0] = '\0';
+						strcpy(aux3, ultra_trash);
+						while((p = strchr(aux3, '\r')) != NULL) *p = '/';
+						wprintw(output_win, "Enviado: %s", aux3);
+						wrefresh(output_win);
+						fprintf(plogf, "Enviado: %s", aux3);
 					}
 
 					//wprintw(output_win, "send= %d\n",send);

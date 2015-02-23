@@ -4,11 +4,13 @@ WINDOW *create_newwin(int height, int width, int starty, int startx);
 
 void intHandler(int);
 
+pthread_t /*h,*/ h1, h2;
+char *whitespaces, *whitespaces2;
+
 int main(int argc, char *argv[]){
 	int startx, starty, width, height;
 	//int ch;
 	char msg[512];
-	pthread_t /*h,*/ h1, h2;
 
 	initscr();			/* Start curses mode 		*/
 	cbreak();			
@@ -28,10 +30,10 @@ int main(int argc, char *argv[]){
 	output_win = newwin(LINES-3, (3*COLS/4) - 2, 3, 1);
 	scrollok(output_win, TRUE);
 
-	mvwprintw(title_win, 1, 1, "IRCBot (QUIT to exit, Ctrl+C to enable scrolling, F1 to disable)");
+	mvwprintw(title_win, 1, 1, "IRCBot (QUIT to exit");
 	wrefresh(title_win);
 
-	mvwprintw(input_win, LINES - 3, 1, "Message:");
+	mvwprintw(input_win, LINES - 3, 0, "Message:");
 	wrefresh(input_win);
 	wrefresh(output_win);
 
@@ -41,19 +43,19 @@ int main(int argc, char *argv[]){
 		wrefresh(output_win);
 	}*/
 
-	//signal(SIGINT, intHandler);
 	plogf = fopen("log", "w+");
 	connect_client(&h1, &h2);
 	int i = LINES-5;
-	char *whitespaces = malloc(width - 2);
+	char *whitespaces = malloc(width);
 	char *whitespaces2 = NULL;
 	if((width -2 - strlen("Message: ")) > 0){
-		whitespaces2 = malloc(width -2 - strlen("Message: "));
+		whitespaces2 = malloc(width - strlen("Message: "));
 	}
-	memset(whitespaces, ' ', width - 3);
-	memset(whitespaces2, ' ', width - 3 - strlen("Message: "));
-	whitespaces[width-3] = '\0';
-	whitespaces[width - 3 - strlen("Message: ")] = '\0';
+	memset(whitespaces, ' ', width - 1);
+	memset(whitespaces2, ' ', width - 1 - strlen("Message: "));
+	whitespaces[width-1] = '\0';
+	whitespaces[width - 1 - strlen("Message: ")] = '\0';
+	signal(SIGINT, intHandler);
 	while(1){
 		//mvwscanw(input_win, LINES-2, strlen("Message: "), "%s", msg);
 		//pthread_create(&h, NULL, getarrows, NULL);
@@ -65,7 +67,7 @@ int main(int argc, char *argv[]){
 		mvwprintw(input_win, i, 1, "%s", msg);
 
 		mvwprintw(input_win, LINES-3, strlen("Message: "), whitespaces2);
-		mvwprintw(input_win, LINES-2, 1, whitespaces);
+		mvwprintw(input_win, LINES-2, 0, whitespaces);
 		wrefresh(input_win);
 		sprintf(msg,"%s%c%c",msg,0X0d,0X0d);
 		escribir(sockfd,msg);
@@ -111,25 +113,15 @@ WINDOW *create_newwin(int height, int width, int starty, int startx){
 
 
 void intHandler(int dummy) {
-    int c;
-    //noecho();
-    idlok(output_win, TRUE);
-    scrollok(output_win, TRUE);
-    wprintw(output_win, "Interrupcion capturada\n");
-    wrefresh(output_win);
-    while((c = getch()) != KEY_F(1)){
-		switch(c)
-		{	case KEY_UP:
-				wscrl(output_win, 1);
-				wrefresh(output_win);
-				break;
-			case KEY_DOWN:
-				wscrl(output_win, -1);
-				wrefresh(output_win);
-				break;
-			default:
-				break;
-		}
-	}
-	echo();
+	free(whitespaces);
+	free(whitespaces2);
+	pthread_cancel(h1);
+	pthread_join(h1, NULL);
+	pthread_cancel(h2);
+	pthread_join(h2, NULL);
+	delwin(input_win);
+	delwin(title_win);
+	delwin(output_win);
+	fclose(plogf);
+    exit(0);
 }
