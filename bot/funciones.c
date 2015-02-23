@@ -41,7 +41,7 @@ void * servRecv(void *args){
 	char *command, *usr, *trash;
 	int aux;
 	int send = 1;
-	int loro = 0;
+	int loro = 0, excptloro = 0;
 	char* ultra_trash;
 	char maximum_trash[1024];
 	char* p;
@@ -54,6 +54,7 @@ void * servRecv(void *args){
 			strcpy(aux3, buf);
 			while((p = strchr(aux3, '\r')) != NULL) *p = '/';
 			if (strstr(aux3, " PONG") == NULL) wprintw(output_win, "Recibido: %s", aux3);
+			if (strstr(aux3, "raspberry@") != NULL) excptloro = 1;
 			wrefresh(output_win);
 			fprintf(plogf, "Recibido: %s", aux3);
 			usr = strtok (buf,"!");
@@ -108,10 +109,11 @@ void * servRecv(void *args){
 				//wprintw(output_win, "usr==%s\n", usr);
 				//sprintf(maximum_trash, "PRIVMSG %s :<%s@%s> %s", dest, &usr[1], ch, ultra_trash);
 				wrefresh(output_win);
-				if(iscommand(ultra_trash) == 0 && loro == 1){
+				if(iscommand(ultra_trash) == 0 && loro == 1 && excptloro == 0){
 					sprintf(maximum_trash, "PRIVMSG %s :%s", ch, ultra_trash);
 					//wprintw(output_win, "maximum_trash:%s\n", maximum_trash);
 					//wrefresh(output_win);
+					sleep(1);
 					escribir(sockfd, maximum_trash);
 					aux3[0] = '\0';
 					strcpy(aux3, maximum_trash);
@@ -119,7 +121,6 @@ void * servRecv(void *args){
 					wprintw(output_win, "Enviado: %s", aux3);
 					wrefresh(output_win);
 					fprintf(plogf, "Enviado: %s", aux3);
-					sleep(1);
 
 				}else if(check_usr(&usr[1]) != 0){
 					if(strncmp(ultra_trash,"SEND",strlen("SEND"))==0){
@@ -151,9 +152,25 @@ void * servRecv(void *args){
 					//wprintw(output_win, "send= %d\n",send);
 					//wrefresh(output_win);
 				}
-				
+				excptloro = 0;
 				free(ultra_trash);
 				//free(ch);
+	    	} else if(strcmp(command,"LORO")==0){
+				loro=1;
+				wprintw(output_win, "LORO\n");
+				wrefresh(output_win);
+	    	} else if(strcmp(command,"NLORO")==0){
+				loro=0;
+				wprintw(output_win, "NLORO\n");
+				wrefresh(output_win);
+	    	} else if(strcmp(command,"SEND")==0){
+				send=1;
+				wprintw(output_win, "SEND\n");
+				wrefresh(output_win);
+	    	} else if(strcmp(command,"NSEND")==0){
+				send=1;
+				wprintw(output_win, "NSEND\n");
+				wrefresh(output_win);
 	    	} /*else{
 	    		if(strstr(usr, "raspberry") == NULL){
 					maximum_trash[0] = '\0';

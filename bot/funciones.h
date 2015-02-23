@@ -1,6 +1,7 @@
 #ifndef _SOCKET_H
 #define _SOCKET_H
 #include <sys/types.h>
+#include <sys/wait.h>
 #include <sys/socket.h>
 #include <errno.h>
 #include <netinet/in.h>
